@@ -1,4 +1,4 @@
-import { StyleSheet, View, Text, Pressable } from 'react-native';
+import { StyleSheet, View, Text, Pressable, Modal } from 'react-native';
 
 function GoalItems({ itemData, deleteGoalItem, id }) {
   return (

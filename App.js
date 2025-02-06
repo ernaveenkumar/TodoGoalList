@@ -15,6 +15,7 @@ import GoalInputandButton from './GoalInputandButton';
 export default function App() {
   const [enteredtext, setEnteredText] = useState('');
   const [courseGoals, setCourseGoals] = useState([]);
+  const [modalIsVisible, setModalIsVisible] = useState(false);
 
   function goalInputHandler(enteredtext) {
     console.log(enteredtext);
@@ -33,7 +34,7 @@ export default function App() {
     ]);
 
     setEnteredText('');
-    console.log(courseGoals);
+    setModalIsVisible(!modalIsVisible);
   }
 
   function deleteGoalItem(id) {
@@ -43,13 +44,24 @@ export default function App() {
     });
   }
 
+  function makeModelVisibleHandler() {
+    setModalIsVisible(!modalIsVisible);
+  }
+  function cancelGoalHandler() {
+    setModalIsVisible(!modalIsVisible);
+  }
   return (
     <View style={styles.appcontainer}>
-      <GoalInputandButton
-        addGoalHandler={addGoalHandler}
-        goalInputHandler={goalInputHandler}
-        enteredtext={enteredtext}
-      />
+      <Button title="Add a goal" onPress={makeModelVisibleHandler} />
+      {modalIsVisible && (
+        <GoalInputandButton
+          addGoalHandler={addGoalHandler}
+          goalInputHandler={goalInputHandler}
+          enteredtext={enteredtext}
+          modalIsVisible={modalIsVisible}
+          cancelGoalHandler={cancelGoalHandler}
+        />
+      )}
       <View style={styles.goalListContainer}>
         <Text> List of Gaols! </Text>
         <FlatList
