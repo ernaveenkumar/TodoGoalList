@@ -52,7 +52,11 @@ export default function App() {
   }
   return (
     <View style={styles.appcontainer}>
-      <Button title="Add a goal" onPress={makeModelVisibleHandler} />
+      <Button
+        title="Add a goal"
+        onPress={makeModelVisibleHandler}
+        color="#0000cd"
+      />
       {modalIsVisible && (
         <GoalInputandButton
           addGoalHandler={addGoalHandler}
